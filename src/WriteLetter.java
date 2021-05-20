@@ -1,35 +1,72 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+
+//・同じインスタンスであることを同一、同じ値であることを同値という
+//・複数の変数が同じインスタンスを参照している性質のことを同一性
 
 public class WriteLetter {
     public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+
+        //どの季節か
+        int season = 0;
+
+        //本文
+        String inputBody = "";
+        ArrayList<String> body = new ArrayList<String>();
+
         //書き出しの言葉
         String[] header = new String[]{
-                        "皆様お変わりなくお過ごしでしょうか",
-                        "すっかりご無沙汰いたしまして、申し訳ありません。",
-                        "天候不順のみぎり、お元気でご活躍のことと存じます。",
-                        "平素は何かとお心にかけて下さいまして有難うございます。",
-                        "いつもご高配をいただき、誠にありがとうございます。",
-                    };
+                "うららかな春の日差しが心地よい季節となりました。",
+                "草木の緑も一段と濃くなってきましたが、お変わりなくお過ごしでしょうか。",
+                "朝晩はだいぶ涼しく感じられるようになりましたが、いかがお過ごしでしょうか。",
+                "日ごとに寒さが増し、冬支度にお忙しくされていることと存じます。",
+                "いつもご高配をいただき、誠にありがとうございます。",
+        };
 
         //結びの言葉
         String[] footer = new String[] {
-                "取り急ぎ近況お知らせ致します。",
-                "切にご自愛を祈りあげます。",
-                "時節柄、ご健康には一段とご留意のほどを。",
-                "お返事を賜らば幸いに存じます。",
+                "花冷えに風邪など召されませぬようご自愛下さい。",
+                "時節柄、ご自愛専一にご精励ください。",
+                "秋気肌に染む時節、風邪など召されませぬようご自愛ください。",
+                "寒さひとしお厳しき折、何卒ご自愛専一にてお願い申し上げます。",
                 "今後とも何卒よろしくお願いします。",
         };
 
         //文字の色
-        HashMap<String, String> color = new HashMap<>();
-        color.put("black", "\u001b[30m");
-        color.put("green", "\u001b[32m");
-        color.put("yellow", "\u001b[33m");
-        color.put("blue", "\u001b[34m");
-        color.put("white", "\u001b[37m");
-        color.put("reset", "\u001b[0m");
+//        HashMap<String, String> color = new HashMap<>();
+//        color.put("black", "\u001b[30m");
+//        color.put("green", "\u001b[32m");
+//        color.put("yellow", "\u001b[33m");
+//        color.put("blue", "\u001b[34m");
+//        color.put("white", "\u001b[37m");
+//        color.put("reset", "\u001b[0m");
 
-        System.out.println(color.get("green")+"aaa"+color.get("reset"));
+        System.out.println("文章作成を支援します。\n季節を選んでください。");
+        System.out.print("1→春　2→夏　3→秋　4→冬 5→その他\n>");
+
+        //nextIntの場合改行が残るためnextLineを使用
+        try {
+            season = Integer.parseInt(stdIn.nextLine());
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+        //本文を入力。EOFで入力を中止。
+        System.out.print("本文を入力してください。改行も入力できます。EOFで入力を中止します。\n");
+        do {
+            inputBody = stdIn.nextLine();
+            body.add(inputBody);
+
+        } while(!inputBody.equals("EOF"));
+
+        //メッセージを出力
+        System.out.println(header[season-1] + "\n");
+
+        for(int i = 0; i < body.size()-1; i++){
+            System.out.println(body.get(i));
+        }
+
+        System.out.println("\n" + footer[season-1]);
+
     }
 }
