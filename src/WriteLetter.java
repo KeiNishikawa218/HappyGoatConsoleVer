@@ -1,21 +1,22 @@
 import java.util.*;
 
-//・同じインスタンスであることを同一、同じ値であることを同値という
-//・複数の変数が同じインスタンスを参照している性質のことを同一性
-
 public class WriteLetter {
     public static void main(String[] args) {
+
+
+//プログラムベースで思考整理
+
         Scanner stdIn = new Scanner(System.in);
 
         //どの季節か
-        int season = 0;
+        int season = 2;
 
         //本文
         String inputBody = "";
         ArrayList<String> body = new ArrayList<String>();
 
         //書き出しの言葉
-        String[] header = new String[]{
+        String[] header = new String[] {
                 "うららかな春の日差しが心地よい季節となりました。",
                 "草木の緑も一段と濃くなってきましたが、お変わりなくお過ごしでしょうか。",
                 "朝晩はだいぶ涼しく感じられるようになりましたが、いかがお過ごしでしょうか。",
@@ -41,6 +42,7 @@ public class WriteLetter {
 //        color.put("white", "\u001b[37m");
 //        color.put("reset", "\u001b[0m");
 
+
         System.out.println("文章作成を支援します。\n季節を選んでください。");
         System.out.print("1→春　2→夏　3→秋　4→冬 5→その他\n>");
 
@@ -48,8 +50,15 @@ public class WriteLetter {
         try {
             season = Integer.parseInt(stdIn.nextLine());
         } catch (NumberFormatException e) {
-            e.printStackTrace();
+            season = 5;
+            System.out.println("季節が存在しないため。その他を選択します。");
+            System.out.println("5→その他を選択しました。\n");
+            //プログラムを終わらせるという選択肢もある
+            //もう一回聞くのもあり
+//            e.printStackTrace();
         }
+
+        //季節の訂正ができるといいね
 
         //本文を入力。EOFで入力を中止。
         System.out.print("本文を入力してください。改行も入力できます。EOFで入力を中止します。\n");
@@ -59,14 +68,16 @@ public class WriteLetter {
 
         } while(!inputBody.equals("EOF"));
 
-        //メッセージを出力
+        //メッセージを出力。
         System.out.println(header[season-1] + "\n");
 
+        //ListをStringに変換すれば１行でかけるのでは
         for(int i = 0; i < body.size()-1; i++){
             System.out.println(body.get(i));
         }
 
         System.out.println("\n" + footer[season-1]);
 
+        //良いコメント　→　なぜその処理なのか。何をは見ればわかる場合も
     }
 }
