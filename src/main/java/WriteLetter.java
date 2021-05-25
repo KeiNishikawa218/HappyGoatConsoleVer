@@ -2,10 +2,6 @@ import java.util.*;
 
 public class WriteLetter {
     public static void main(String[] args) {
-
-
-//プログラムベースで思考整理
-
         Scanner stdIn = new Scanner(System.in);
 
         //どの季節か
