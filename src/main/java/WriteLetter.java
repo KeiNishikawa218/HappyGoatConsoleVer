@@ -1,9 +1,46 @@
 import java.util.*;
+import org.opencv.core.Mat;
+import org.opencv.imgcodecs.Imgcodecs; // imread, imwrite, etc
+import org.opencv.imgproc.Imgproc;
+import org.opencv.core.Core;
+import org.opencv.highgui.HighGui;
+import org.opencv.core.Point;
+import org.opencv.core.Scalar;
 
 public class WriteLetter {
     public static void main(String[] args) {
+        //文字と画像合成機能以外
+        //サービスを通じて人々を幸せに→気持ちを伝える
+        //気持ちを伝え合うために何ができれば良いのか　←　音声・画像・Gif (apngという形式もある)
+        //文章の自動生成（テンプレート機能）
+        //Springのフレームワーク
+        //SVG　←　文字のところだけいじれる？
+
         Scanner stdIn = new Scanner(System.in);
 
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+
+        String picFileSrc = "../img/pink.jpg";
+
+        Mat matSrc = new Mat();
+
+        matSrc = Imgcodecs.imread(picFileSrc);                          // 入力画像の読み込み
+
+        String text = "Happy Goat!!";
+        Point position = new Point(180, 180);
+        Scalar color = new Scalar(0, 0, 255);
+        int font = Imgproc.FONT_HERSHEY_SIMPLEX;
+        int scale = 1;
+        int thickness = 3;
+        //Adding text to the image
+        Imgproc.putText(matSrc, text, position, font, scale, color, thickness);
+        //Displaying the resultant Image
+        HighGui.imshow("Contours operation", matSrc);
+        HighGui.waitKey();
+
+        System.exit(0);
+
+        //TODO:ユーザからの入力は後ほど対応
         //どの季節か
         int season = 2;
 
@@ -54,7 +91,7 @@ public class WriteLetter {
 //            e.printStackTrace();
         }
 
-        //季節の訂正ができるといいね
+        //TODO:季節の訂正ができるといいね
 
         //本文を入力。EOFで入力を中止。
         System.out.print("本文を入力してください。改行も入力できます。EOFで入力を中止します。\n");
@@ -75,5 +112,7 @@ public class WriteLetter {
         System.out.println("\n" + footer[season-1]);
 
         //良いコメント　→　なぜその処理なのか。何をは見ればわかる場合も
+
+
     }
 }
