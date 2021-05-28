@@ -2,31 +2,26 @@ import java.util.*;
 
 public class HappyGoat {
     public static void main(String[] args) {
-        //文字と画像合成機能以外
-        //サービスを通じて人々を幸せに→気持ちを伝える
-        //気持ちを伝え合うために何ができれば良いのか　←　音声・画像・Gif (apngという形式もある)
-        //文章の自動生成（テンプレート機能）
-        //Springのフレームワーク
-        //SVG　←　文字のところだけいじれる？
-        //メソッド名で機能を表現
-        //画像生成クラス　→　文字と画像を与えると合成
-        //XXX: 愚直な実装だけど動いてる。直したい
-        //FIXME:　実装はしたけど直してくれ〜。期待通りに動かないところがある
-        //TODO: やること！
         Scanner stdIn = new Scanner(System.in);
+
+        //全角入力でも動くけど警告が出る
+        String userInput = stdIn.nextLine();
 
         //階層構造がHappyGoatから始まっているため、"src/main/java"を追記
         //new File("img name").getAbsoluteFile()によって確認
         String filename = "src/main/img/pink.jpg";
 
         ReadAndWriteImage backgroundImage = new ReadAndWriteImage(filename);
+
+        backgroundImage.setUserInput(userInput);
         backgroundImage.addText();
 
         backgroundImage.WriteImage(backgroundImage.getImg(), "src/main/out/");
 
+
         System.exit(0);
 
-        //TODO:ユーザからの入力は後ほど対応
+        //TODO:ユーザからの複数行の入力
         //どの季節か
         int season = 2;
 

@@ -6,19 +6,21 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 
 import javax.imageio.*;
-import javax.swing.*;
 
 public class ReadAndWriteImage{
     private BufferedImage img = null; // 画像オブジェクト
     private int width = 0;  // 画面の幅
     private int height = 0; // 画面の高さ
+    private String userInput = "";
+
+    Graphics g;
 
     public ReadAndWriteImage(String imageName) {
         try {
             this.img = ImageIO.read(new File(imageName));
             this.width = img.getWidth();
             this.height = img.getHeight();
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println(e);
             System.out.println("画像の読み込みに失敗しました");
         }
@@ -38,27 +40,18 @@ public class ReadAndWriteImage{
         return img;
     }
 
-    public void addText() {
-        Font font = new Font("Arial", Font.BOLD, 18);
+    public void setUserInput(String userInput) {
+        this.userInput = userInput;
+    }
 
-        Graphics g = img.getGraphics();
+    public void addText() {
+        Font font = new Font("ＭＳ 明朝", Font.PLAIN, 18);
+
+        g = img.getGraphics();
         g.setFont(font);
         g.setColor(Color.GREEN);
-        g.drawString("text", 0, 20);
+
+        //入力が日本語だと警告出るけど一応動く
+        g.drawString(this.userInput, 0, 20);
     }
-    //    @Override
-//    public Dimension getPreferredSize() {
-//        return new Dimension(width, height);
-//    }
-
-    // 画面描画
-//    public void paintComponent(Graphics g) {
-//        // 背景
-//        g.setColor(Color.black);
-//        g.fillRect(0, 0, width, height);
-//        // 画像の表示
-//        g.drawImage(this.img, 0, 0, null);
-//    }
-
-
 }
