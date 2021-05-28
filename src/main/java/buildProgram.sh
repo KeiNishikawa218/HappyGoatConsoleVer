@@ -4,7 +4,7 @@ echo "ブログラムをビルドします。\nnow building ..."
 
 # OpenCV込みのビルドを行う
 #javac -cp /usr/local/Cellar/opencv/4.5.2_4/share/java/opencv4/opencv-452.jar WriteLetter.java
-javac -classpath /Users/kei/.m2/repository/org/openpnp/opencv/4.5.1-2/opencv-4.5.1-2.jar WriteLetter.java
+javac -classpath /Users/kei/.m2/repository/org/openpnp/opencv/4.5.1-2/opencv-4.5.1-2.jar WriteLetter
 
 echo "build succeeded\n"
 

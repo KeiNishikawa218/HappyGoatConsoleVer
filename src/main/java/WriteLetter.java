@@ -15,10 +15,14 @@ public class WriteLetter {
         //文章の自動生成（テンプレート機能）
         //Springのフレームワーク
         //SVG　←　文字のところだけいじれる？
-
+        //メソッド名で機能を表現
+        //画像生成クラス　→　文字と画像を与えると合成
+        //XXX: 愚直な実装だけど動いてる。直したい
+        //FIXME:　実装はしたけど直してくれ〜。期待通りに動かないところがある
+        //TODO: やること！
         Scanner stdIn = new Scanner(System.in);
 
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+//        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 
         String picFileSrc = "../img/pink.jpg";
 
