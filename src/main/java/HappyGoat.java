@@ -2,22 +2,20 @@ import java.util.*;
 
 public class HappyGoat {
     public static void main(String[] args) {
+        //メソッドとかを見ただけで英文として理解できるようなコードが理想
         Scanner stdIn = new Scanner(System.in);
 
-        //全角入力でも動くけど警告が出る
-        String userInput = stdIn.nextLine();
-
-        //階層構造がHappyGoatから始まっているため、"src/main/java"を追記
-        //new File("img name").getAbsoluteFile()によって確認
+        //階層構造がHappyGoatから始まっているため、"src/main/java"を追記。new File("img name").getAbsoluteFile()によって確認
         String filename = "src/main/img/pink.jpg";
 
-        ReadAndWriteImage backgroundImage = new ReadAndWriteImage(filename);
+        //TODO:プログラムを実行するとdiscordの共有が切れる
+        //警告が出るけど、全角入力でも動く
+        System.out.print("> ");
+        String userInputText = stdIn.nextLine();
 
-        backgroundImage.setUserInput(userInput);
-        backgroundImage.addText();
-
-        backgroundImage.WriteImage(backgroundImage.getImg(), "src/main/out/");
-
+        //変数を利用している範囲が狭いのでgeneratorという名前を採用
+        ImageGenerator generator = new ImageGenerator(filename, userInputText);
+        generator.generate("src/main/out/");
 
         System.exit(0);
 

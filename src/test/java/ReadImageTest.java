@@ -1,7 +1,7 @@
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ReadImageTest {
-    ReadAndWriteImage sut;
+    ImageGenerator sut;
 
 //    @BeforeEach
 //    public void beforeEach() {
