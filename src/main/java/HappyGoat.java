@@ -1,13 +1,6 @@
 import java.util.*;
-import org.opencv.core.Mat;
-import org.opencv.imgcodecs.Imgcodecs; // imread, imwrite, etc
-import org.opencv.imgproc.Imgproc;
-import org.opencv.core.Core;
-import org.opencv.highgui.HighGui;
-import org.opencv.core.Point;
-import org.opencv.core.Scalar;
 
-public class WriteLetter {
+public class HappyGoat {
     public static void main(String[] args) {
         //文字と画像合成機能以外
         //サービスを通じて人々を幸せに→気持ちを伝える
@@ -22,25 +15,14 @@ public class WriteLetter {
         //TODO: やること！
         Scanner stdIn = new Scanner(System.in);
 
-//        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+        //階層構造がHappyGoatから始まっているため、"src/main/java"を追記
+        //new File("img name").getAbsoluteFile()によって確認
+        String filename = "src/main/img/pink.jpg";
 
-        String picFileSrc = "../img/pink.jpg";
+        ReadAndWriteImage backgroundImage = new ReadAndWriteImage(filename);
+        backgroundImage.addText();
 
-        Mat matSrc = new Mat();
-
-        matSrc = Imgcodecs.imread(picFileSrc);                          // 入力画像の読み込み
-
-        String text = "Happy Goat!!";
-        Point position = new Point(180, 180);
-        Scalar color = new Scalar(0, 0, 255);
-        int font = Imgproc.FONT_HERSHEY_SIMPLEX;
-        int scale = 1;
-        int thickness = 3;
-        //Adding text to the image
-        Imgproc.putText(matSrc, text, position, font, scale, color, thickness);
-        //Displaying the resultant Image
-        HighGui.imshow("Contours operation", matSrc);
-        HighGui.waitKey();
+        backgroundImage.WriteImage(backgroundImage.getImg(), "src/main/out/");
 
         System.exit(0);
 

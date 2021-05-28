@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="HappyGoat" target="11.0.10" />
+      <module name="HappyGoat" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>
