@@ -8,7 +8,7 @@ public class HappyGoat {
         //階層構造がHappyGoatから始まっているため、"src/main/java"を追記。new File("img name").getAbsoluteFile()によって確認
         String filename = "src/main/img/pink.jpg";
 
-        //TODO:プログラムを実行するとdiscordの共有が切れる
+        //TODO:プログラムを実行するとdiscordの共有が切れる問題について原因を調べる
         //警告が出るけど、全角入力でも動く
         System.out.print("> ");
         String userInputText = stdIn.nextLine();

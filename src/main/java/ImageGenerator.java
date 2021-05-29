@@ -12,46 +12,43 @@ import javax.imageio.*;
  * 文字を埋め込んだ画像を生成するクラスです。
  */
 public class ImageGenerator {
-    private BufferedImage img = null; // 画像オブジェクト
+    private BufferedImage image = null; // 画像オブジェクト
     private int width = 0;  // 画面の幅
     private int height = 0; // 画面の高さ
     private String userInputText = "";
 
-    //TODO:変数名をimgかimageに統一
-    //TODO:変数名gをgraphicsに変更
-    Graphics g;
+    Graphics graphics;
 
     public ImageGenerator(String imageFileName, String userInputText) {
         try {
-            this.img = ImageIO.read(new File(imageFileName));
+            this.image = ImageIO.read(new File(imageFileName));
             this.userInputText = userInputText;
 
-            this.width = img.getWidth();
-            this.height = img.getHeight();
+            this.width = image.getWidth();
+            this.height = image.getHeight();
         } catch (IOException e) {
             System.out.println(e);
             System.out.println("画像の読み込みに失敗しました");
         }
     }
 
-    //TODO:addは追加するなので避けた方がいい（2回呼べばどんどん追加してくれると勘違いされるかも）
-    public void addText() {
+    public void writeText() {
         Font font = new Font("ＭＳ 明朝", Font.PLAIN, 18);
 
-        g = img.getGraphics();
-        g.setFont(font);
-        g.setColor(Color.GREEN);
+        graphics = image.getGraphics();
+        graphics.setFont(font);
+        graphics.setColor(Color.GREEN);
 
         //警告出るけど、日本語の入力でも一応動く
-        g.drawString(this.userInputText, 0, 20);
+        graphics.drawString(this.userInputText, 0, 20);
     }
 
     public void generate(String outputFilePath) {
-        addText();
+        writeText();
 
         try {
             File outputFileName = new File(outputFilePath + "saved.png");
-            ImageIO.write(this.img, "png", outputFileName);
+            ImageIO.write(this.image, "png", outputFileName);
         } catch (IOException e) {
             System.out.println(e);
             System.out.println("画像の書き込みに失敗しました");
