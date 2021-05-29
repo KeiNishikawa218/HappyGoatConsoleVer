@@ -13,8 +13,6 @@ import javax.imageio.*;
  */
 public class ImageGenerator {
     private BufferedImage image = null; // 画像オブジェクト
-    private int width = 0;  // 画面の幅
-    private int height = 0; // 画面の高さ
     private String userInputText = "";
 
     Graphics graphics;
@@ -23,11 +21,8 @@ public class ImageGenerator {
         try {
             this.image = ImageIO.read(new File(imageFileName));
             this.userInputText = userInputText;
-
-            this.width = image.getWidth();
-            this.height = image.getHeight();
         } catch (IOException e) {
-            System.out.println(e);
+            e.printStackTrace(System.out);
             System.out.println("画像の読み込みに失敗しました");
         }
     }
@@ -44,13 +39,19 @@ public class ImageGenerator {
     }
 
     public void generate(String outputFilePath) {
+        //imageがnullの場合テキストを書き込めないため、nullか確認。
+        if (this.image == null) {
+            System.out.println("指定した画像名は無効です。\nプログラムを終了します。");
+            System.exit(1);
+        }
+
         writeText();
 
         try {
             File outputFileName = new File(outputFilePath + "saved.png");
             ImageIO.write(this.image, "png", outputFileName);
         } catch (IOException e) {
-            System.out.println(e);
+            e.printStackTrace(System.out);
             System.out.println("画像の書き込みに失敗しました");
         }
     }
