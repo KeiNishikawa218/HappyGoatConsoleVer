@@ -4,6 +4,7 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.ArrayList;
 
 import javax.imageio.*;
 
@@ -14,13 +15,22 @@ import javax.imageio.*;
 public class ImageGenerator {
     private BufferedImage image = null; // 画像オブジェクト
     private String userInputText = "";
+    private  int imageWidth = 0;
+    private  int imageHeight = 0;
+
+    private ArrayList<String> userInputTextArray;
 
     Graphics graphics;
 
-    public ImageGenerator(String imageFileName, String userInputText) {
+    public ImageGenerator(String imageFileName, ArrayList<String> userInputTextArray) {
+        this.userInputTextArray = userInputTextArray;
+
         try {
             this.image = ImageIO.read(new File(imageFileName));
-            this.userInputText = userInputText;
+            this.imageWidth = image.getWidth();
+            this.imageHeight = image.getHeight();
+
+//            this.userInputText = userInputText;
         } catch (IOException e) {
             e.printStackTrace(System.out);
             System.out.println("画像の読み込みに失敗しました");
@@ -35,14 +45,14 @@ public class ImageGenerator {
         graphics.setColor(Color.BLACK);
 
         //警告出るけど、日本語の入力でも一応動く
-        graphics.drawString(this.userInputText, 15, 20);
+        //TODO:うまい具合にリストから要素を取り出す
+        for(int i = 25; i < imageHeight; i += 30) {
+            graphics.drawString(this.userInputTextArray.get(0), 15, i);
+        }
     }
 
     public void drawLines() {
         graphics = image.getGraphics();
-        int imageWidth = image.getWidth();
-        int imageHeight = image.getHeight();
-
         graphics.setColor(Color.BLACK);
 
         for(int i = 30; i < imageHeight; i += 30) {
