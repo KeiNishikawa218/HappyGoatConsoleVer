@@ -32,10 +32,22 @@ public class ImageGenerator {
 
         graphics = image.getGraphics();
         graphics.setFont(font);
-        graphics.setColor(Color.GREEN);
+        graphics.setColor(Color.BLACK);
 
         //警告出るけど、日本語の入力でも一応動く
-        graphics.drawString(this.userInputText, 0, 20);
+        graphics.drawString(this.userInputText, 15, 20);
+    }
+
+    public void drawLines() {
+        graphics = image.getGraphics();
+        int imageWidth = image.getWidth();
+        int imageHeight = image.getHeight();
+
+        graphics.setColor(Color.BLACK);
+
+        for(int i = 30; i < imageHeight; i += 30) {
+            graphics.drawLine(15, i, imageWidth - 15, i);
+        }
     }
 
     public void generate(String outputFilePath) {
@@ -45,6 +57,7 @@ public class ImageGenerator {
             System.exit(1);
         }
 
+        drawLines();
         writeText();
 
         try {
