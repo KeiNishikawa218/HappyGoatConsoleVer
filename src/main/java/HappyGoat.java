@@ -2,13 +2,11 @@ import java.util.*;
 
 public class HappyGoat {
     public static void main(String[] args) {
-        //メソッドとかを見ただけで英文として理解できるようなコードが理想
         Scanner stdIn = new Scanner(System.in);
 
         //階層構造がHappyGoatから始まっているため、"src/main/java"を追記。new File("img name").getAbsoluteFile()によって確認
         String filename = "src/main/img/pink.jpg";
 
-        //TODO:プログラムを実行するとdiscordの共有が切れる問題について原因を調べる
         //警告が出るけど、全角入力でも動く
         ArrayList<String> userInputTextArray = new ArrayList<String>();
         String userInputText = "";

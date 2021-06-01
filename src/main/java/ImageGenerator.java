@@ -14,7 +14,6 @@ import javax.imageio.*;
  */
 public class ImageGenerator {
     private BufferedImage image = null; // 画像オブジェクト
-    private String userInputText = "";
     private  int imageWidth = 0;
     private  int imageHeight = 0;
 
@@ -30,7 +29,6 @@ public class ImageGenerator {
             this.imageWidth = image.getWidth();
             this.imageHeight = image.getHeight();
 
-//            this.userInputText = userInputText;
         } catch (IOException e) {
             e.printStackTrace(System.out);
             System.out.println("画像の読み込みに失敗しました");
@@ -44,10 +42,14 @@ public class ImageGenerator {
         graphics.setFont(font);
         graphics.setColor(Color.BLACK);
 
-        //警告出るけど、日本語の入力でも一応動く
-        //TODO:うまい具合にリストから要素を取り出す
-        for(int i = 25; i < imageHeight; i += 30) {
-            graphics.drawString(this.userInputTextArray.get(0), 15, i);
+        //ときどき警告出るけど、日本語の入力でも一応動く
+        int i = 0; int j = 25;
+
+        //size()-1することでEOFを出力しないようにする
+        while (i < userInputTextArray.size()-1) {
+            graphics.drawString(this.userInputTextArray.get(i), 15, i+j);
+
+            i += 1; j += 30;
         }
     }
 
