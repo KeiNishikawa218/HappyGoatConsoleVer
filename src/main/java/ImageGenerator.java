@@ -29,6 +29,7 @@ public class ImageGenerator {
             this.imageWidth = image.getWidth();
             this.imageHeight = image.getHeight();
 
+            this.userInputTextArray = userInputTextArray;
         } catch (IOException e) {
             e.printStackTrace(System.out);
             System.out.println("画像の読み込みに失敗しました");
