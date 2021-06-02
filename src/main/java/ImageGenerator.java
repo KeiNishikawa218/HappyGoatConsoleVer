@@ -43,9 +43,9 @@ public class ImageGenerator {
         graphics.setFont(font);
         graphics.setColor(Color.BLACK);
 
-        //ときどき警告出るけど、日本語の入力でも一応動く
         int i = 0; int j = 25;
 
+        //ときどき警告出るけど、日本語の入力でも一応動く
         //size()-1することでEOFを出力しないようにする
         while (i < userInputTextArray.size()-1) {
             graphics.drawString(this.userInputTextArray.get(i), 15, i+j);
