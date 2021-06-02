@@ -8,8 +8,8 @@ public class HappyGoat {
         String filename = "src/main/img/pink.jpg";
 
         //警告が出るけど、全角入力でも動く
-        ArrayList<String> userInputTextArray = new ArrayList<String>();
-        String userInputText = "";
+        ArrayList<String> userInputTextArray = new ArrayList<>();
+        String userInputText;
 
         //本文を入力。EOFで入力を中止。
         System.out.print("本文を入力してください。改行も入力できます。EOFで入力を中止します。\n");
