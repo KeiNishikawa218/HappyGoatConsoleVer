@@ -12,12 +12,16 @@ import javax.imageio.*;
  * 画像の読み込み・文字の付け足し・書き込みを行うクラスです。
  * 文字を埋め込んだ画像を生成するクラスです。
  */
+
+//変数名命名←クラスの型を意識する
+//変数名に型を付けるのか
+
 public class ImageGenerator {
     private BufferedImage image = null; // 画像オブジェクト
     private  int imageWidth = 0;
     private  int imageHeight = 0;
 
-    private ArrayList<String> userInputTextArray;
+    private ArrayList<String> userInputTextArray;   //messageLines
 
     Graphics graphics;
 
@@ -36,7 +40,7 @@ public class ImageGenerator {
         }
     }
 
-    public void writeText() {
+    private void writeText() {
         Font font = new Font("ＭＳ 明朝", Font.PLAIN, 18);
 
         graphics = image.getGraphics();
@@ -54,7 +58,7 @@ public class ImageGenerator {
         }
     }
 
-    public void drawLines() {
+    private void drawLines() {
         graphics = image.getGraphics();
         graphics.setColor(Color.BLACK);
 
@@ -63,19 +67,19 @@ public class ImageGenerator {
         }
     }
 
-    public void generate(String outputFilePath) {
-        //imageがnullの場合テキストを書き込めないため、nullか確認。
-        if (this.image == null) {
-            System.out.println("指定した画像名は無効です。\nプログラムを終了します。");
-            System.exit(1);
-        }
+    public void generate(String outputDirectoryPath, String outputFilename) {
+                //imageがnullの場合テキストを書き込めないため、nullか確認。
+                if (this.image == null) {
+                    System.out.println("指定した画像名は無効です。\nプログラムを終了します。");
+                    System.exit(1);
+                }
 
-        drawLines();
-        writeText();
+                drawLines();
+                writeText();
 
-        try {
-            File outputFileName = new File(outputFilePath + "saved.png");
-            ImageIO.write(this.image, "png", outputFileName);
+                try {
+                    File outputFilePath = new File(outputDirectoryPath + outputFilename);
+                    ImageIO.write(this.image, "png", outputFilePath);
         } catch (IOException e) {
             e.printStackTrace(System.out);
             System.out.println("画像の書き込みに失敗しました");
